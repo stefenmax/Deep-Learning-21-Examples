@@ -2,6 +2,7 @@
 from tensorflow.examples.tutorials.mnist import input_data
 import scipy.misc
 import os
+from PIL import Image
 
 # 读取MNIST数据集。如果不存在会事先下载。
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
@@ -22,7 +23,6 @@ for i in range(20):
     filename = save_dir + 'mnist_train_%d.jpg' % i
     # 将image_array保存为图片
     # 先用scipy.misc.toimage转换为图像，再调用save直接保存。
-    scipy.misc.toimage(image_array, cmin=0.0, cmax=1.0).save(filename)
-
+    Image.fromarray(image_array).convert('RGB').save(filename)
 print('Please check: %s ' % save_dir)
 
